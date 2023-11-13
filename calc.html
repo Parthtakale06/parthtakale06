@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Carbon Footprint Calculator</h1>
+        <form id="carbon-calculator">
+            <label for="from">From:</label>
+            <select id="from" name="from">
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+            </select>
+            
+            <label for="to">To:</label>
+            <select id="to" name="to">
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+            </select>
+            
+            <label for="transport">Mode of Transport:</label>
+            <select id="transport" name="transport">
+                <option value="Bus">Bus</option>
+                <option value="Plane">Plane</option>
+                <option value="Car">Car</option>
+            </select>
+
+            <button type="button" onclick="calculateCarbonFootprint()">Calculate</button>
+        </form>
+
+        <div id="result" style="display: none;">
+            <h2>Results</h2>
+            <div id="carbon-results"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateCarbonFootprint() {
+            var from = document.getElementById("from").value;
+            var to = document.getElementById("to").value;
+            var transport = document.getElementById("transport").value;
+
+            // In a real application, you would send this data to the backend for calculation.
+            // For now, we will use sample values.
+            var distance = 500; // Sample distance in kilometers
+            var time = 6; // Sample time in hours
+
+            // Calculate the carbon footprint on the frontend (in a real app, you would do this on the backend)
+            var emissionFactor = {
+                Train: 0.03,
+                Plane: 0.2,
+                Car: 0.5
+            };
+
+            var carbonEmission = distance * emissionFactor[transport];
+            
+            // Display the results
+            var resultContainer = document.getElementById("result");
+            var carbonResults = document.getElementById("carbon-results");
+            carbonResults.innerHTML = transport + ": " + carbonEmission.toFixed(2) + " metric tons of CO2";
+            resultContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
